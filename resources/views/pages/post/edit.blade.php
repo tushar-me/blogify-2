@@ -8,7 +8,7 @@
 @section('content')
 
     {{-- Header --}}
-    <x-header.Author-header/> 
+    {{-- <x-header.Author-header/>  --}}
 
     {{-- Edit Post Form --}}
     <section class="py-5">

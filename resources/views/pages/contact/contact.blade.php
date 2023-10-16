@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- Header --}}
-    <x-header.default-header/>
+    {{-- <x-header.default-header/> --}}
 
         {{-- About Section --}}
         <section class="contact">

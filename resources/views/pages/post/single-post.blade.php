@@ -8,7 +8,7 @@
 @section('content')
 
     {{-- Header --}}
-    <x-header.author-header/> 
+    {{-- <x-header.author-header/>  --}}
 
     {{--  Post --}}
     <section class="single_post">

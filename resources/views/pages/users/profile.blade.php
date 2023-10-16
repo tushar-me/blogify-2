@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- Header --}}
-    <x-header.author-header/>
+    {{-- <x-header.author-header/> --}}
 
     {{-- Profile --}}
     <section class="profile">
@@ -18,7 +18,7 @@
                     <img src="{{asset('img/post/author/author-1.jpg')}}" alt="Profile Picture">
                 </div>
                 <div class="profile_info">
-                    <h3>Jason Francisco</h3>
+                    <h3>{{ auth()->user()->name}}</h3>
                     <p>Web Developer</p>
                     <h4 class="mt-5 text-white">About Me</h4>
                     <p class="text-center w-75 mx-auto text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, mollitia nostrum iste debitis eum assumenda, temporibus, quis sapiente beatae ad similique. A asperiores ab iusto quas, rem recusandae atque  nostrum iste debitis eum assumenda, et.</p>
@@ -61,7 +61,7 @@
                                             <img src="{{asset('img/post/author/author-2.jpg')}}" alt="Author">
                                         </div>
                                         <div class="info">
-                                            <p>Jason Francisco</p>
+                                            <p>{{ auth()->user()->name}}</p>
                                         </div>
                                     </a>
                                     <p>{{ $post->created_at->format('F j, Y  g:i a') }}</p>

@@ -33,6 +33,13 @@
 </head>
 <body data-scroll-animation="true">
 
+    {{-- Header --}}
+    @auth
+    <x-header.author-header/>
+    @else
+    <x-header.default-header/>
+    @endauth
+    
     <main>
         @yield('content')
     </main>
