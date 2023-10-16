@@ -9,8 +9,11 @@
 @section('content')
 
     {{-- Header --}}
-    {{-- <x-header.default-header/>  --}}
+    @auth
     <x-header.author-header/>
+    @else
+    <x-header.default-header/>
+    @endauth
 
     {{-- Hero --}}
     <x-post.hero-post/>

@@ -40,53 +40,75 @@
                 </ul>
                 <p class="single_post_desc mb-3">{{ $post->post_desc }}</p>
                 <ul class="post_tags">
-                    <li>
-                        <a href="#">Technology</a>
-                    </li>
-                    <li>
-                        <a href="#">Sports</a>
-                    </li>
-                    <li>
-                        <a href="#">Web Development</a>
-                    </li>
-                    <li>
-                        <a href="#">Web Design</a>
-                    </li>
+                    @php
+                        $tags = explode(",", $post->post_tags);
+                    @endphp
+                    @foreach ($tags as $tag)
+                        <li>
+                            <a href="#">{{ $tag }}</a>
+                        </li>
+                    @endforeach
                 </ul>
                 <div class="py-5 d-flex flex-column gap-4" id="comment">
-                    <h4>Comments (2)</h4>
+                    <h4>Comments ({{ $comments->count() }})</h4>
+
+                    @foreach ($comments as $comment)
                     <div class="post_comment">
                         <div class="comment_author">
-                            <img src="{{asset('img/post/author/author-1.jpg')}}" alt="Author">
+                            <img src="{{asset('img/post/author/author.png')}}" alt="Author">
                         </div>
                         <div class="comment_text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, pariatur!</p>
+                            <p>{{$comment->comment_text}}</p>
                             <div class="d-flex align-items-center gap-4 mt-3">
-                                <a href="#">August 20, 2022</a>
+                                <a href="#">{{ $post->created_at->format('F j, Y  g:i a') }}</a>
                                 <a class="reply" href="#">Reply</a>
                             </div>
+                            <button class="comment_popup_menu">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+                            <ul class="comment_popup d-none">
+                                <li>
+                                    <a href="#">Delete <i class="fa-regular fa-trash-can"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#">Report <i class="fa-solid fa-circle-info"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="post_comment">
-                        <div class="comment_author">
-                            <img src="{{asset('img/post/author/author-2.jpg')}}" alt="Author">
-                        </div>
-                        <div class="comment_text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, pariatur!</p>
-                            <div class="d-flex align-items-center gap-4 mt-3">
-                                <a href="#">August 20, 2022</a>
-                                <a class="reply" href="#">Reply</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
-                <div class="comment_form">
-                    <textarea name="post_comment" id="post_comment" placeholder="Write a comment"></textarea>
+                <form class="comment_form" id="comment_form" method="POST" accept="{{route('comment.store')}}">
+                    @csrf
+                    <textarea name="comment_text" id="comment_text" placeholder="Write a comment"></textarea>
                     <button class="mt-4" type="submit">Submit</button>
-                </div>
+                </form>
             </div>
         </div>
     </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#comment_form").submit(function (event) {
+                event.preventDefault();
+        
+                var formData = $(this).serialize();
+        
+                $.ajax({
+                    type: "POST", 
+                    url: "{{route('comment.store')}}", 
+                    data: formData,
+                    success: function (response) {
+                        
+                        $('#comment_form')[0].reset();
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
+        
     
     {{-- Footer --}}
     <x-footer/>

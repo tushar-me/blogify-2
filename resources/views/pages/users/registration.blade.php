@@ -19,11 +19,14 @@
             <div class="col-12 col-lg-6">
                 <div class="registration_form">
                     <h6>Sign Up</h6>
-                    <input type="text" id="name" placeholder="Name">
-                    <input type="email" id="email" placeholder="Enter email">
-                    <input type="Mobile" id="mobile" placeholder="Mobile">
-                    <input type="text" id="password" placeholder="Password">
-                    <button>Register</button>
+                    <form action="/registration/user" method="post">
+                        @csrf
+                        <input type="text" id="name" name="name" placeholder="Name">
+                        <input type="email" id="email" name="email" placeholder="Enter email">
+                        <input type="Mobile" id="mobile" name="mobile" placeholder="Mobile">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    <button type="submit">Register</button>
+                    </form>
                 </div>
             </div>
         </div>

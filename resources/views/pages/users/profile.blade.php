@@ -78,7 +78,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="/delete/{{ $post->id }}">
                                             Delete<i class="fa-solid fa-trash-can"></i>
                                         </a>
                                     </li>
@@ -130,7 +130,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="/delete/{{ $post->id }}">
                                             Delete<i class="fa-solid fa-trash-can"></i>
                                         </a>
                                     </li>

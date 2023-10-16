@@ -47,18 +47,26 @@
                             <div class="_box">
                                 <label for="tagList">Add tag (Press ENTER to Add new Tag)</label>
                                 <input type="hidden" id="Tags" name="post_tags" />
-                                <input type="text" id="newTag" />
-                                <ul id="tagList">
+                                <input type="text" id="newTag" class="newTag" />
+                                <ul id="tagList" class="tagList">
                                     <!-- All TagList Here! -->
                                 </ul>  
                             </div>
                         </div>
                         <div class="mb-4">
                             <h4>Post Thumbnail</h4>
-                            <label class="picture" for="picture__input" tabIndex="0">
-                                <span class="picture__image"></span>
-                            </label>
-                            <input type="file" name="post_thumbnail" id="picture__input" required>
+                            <div class="control-group file-upload" id="file-upload1">
+                                <div class="image-box text-center">
+                                    <div class="upload_text">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        <p>Upload Image</p>
+                                    </div>
+                                    <img src="" alt="Thumbnail">
+                                </div>
+                                <div class="controls" style="display: none;">
+                                    <input type="file" name="post_thumbnail" id="post_thumbnail"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -77,7 +85,7 @@
                 // Client-side validation
                 var postTitle = $('#post_title').val();
                 var postDescription = $('#post_desc').val();
-                var postThumbnail = $('#picture__input')[0].files[0]; // Get the selected file
+                var postThumbnail = $('#post_thumbnail')[0].files[0]; // Get the selected file
                 var isValid = true;
     
                 if (postTitle.trim() === '') {
@@ -99,12 +107,12 @@
                 }
     
                 if (!postThumbnail) {
-                    $('#picture__input').addClass('is-invalid');
-                    $('#picture__input').next('span.error-message').text('Post thumbnail is required');
+                    $('#post_thumbnail').addClass('is-invalid');
+                    $('#post_thumbnail').next('span.error-message').text('Post thumbnail is required');
                     isValid = false;
                 } else {
-                    $('#picture__input').removeClass('is-invalid');
-                    $('#picture__input').next('span.error-message').text('');
+                    $('#post_thumbnail').removeClass('is-invalid');
+                    $('#post_thumbnailt').next('span.error-message').text('');
                 }
     
                 if (!isValid) {
@@ -128,7 +136,7 @@
             });
     
             
-            $('#post_title, #post_desc, #picture__input').on('input', function () {
+            $('#post_title, #post_desc, #post_thumbnail').on('input', function () {
                 $(this).removeClass('is-invalid');
                 $(this).next('span.error-message').text('');
             });

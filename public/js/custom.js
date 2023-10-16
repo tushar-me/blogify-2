@@ -29,6 +29,14 @@ $(document).ready(function(){
     $(".nav_btns").click(function(){
         $(".profile-popup").toggleClass("active");
     });
+
+    //Comment Popup
+    $(".comment_popup_menu").click(function(){
+        var $parentContainer = $(this).closest('.comment_text');
+        
+        $parentContainer.find(".comment_popup").toggleClass("d-none");
+    }); 
+    
 });
 
 /*
@@ -36,39 +44,37 @@ $(document).ready(function(){
 | Image Upload
 |--------------------------------------------------------------------------
 */
-const inputFile = document.querySelector("#picture__input");
-const pictureImage = document.querySelector(".picture__image");
-const pictureImageTxt = "Choose an image";
-pictureImage.innerHTML = pictureImageTxt;
 
-inputFile.addEventListener("change", function (e) {
-const inputTarget = e.target;
-const file = inputTarget.files[0];
+$(".image-box").click(function(event) {
+	var previewImg = $(this).children("img");
 
-if (file) {
-    const reader = new FileReader();
+	$(this)
+		.siblings()
+		.children("input")
+		.trigger("click");
 
-    reader.addEventListener("load", function (e) {
-        const readerTarget = e.target;
+	$(this)
+		.siblings()
+		.children("input")
+		.change(function() {
+			var reader = new FileReader();
 
-        const img = document.createElement("img");
-        img.src = readerTarget.result;
-        img.classList.add("picture__img");
-
-        pictureImage.innerHTML = "";
-        pictureImage.appendChild(img);
-    });
-
-    reader.readAsDataURL(file);
-    } else {
-        pictureImage.innerHTML = pictureImageTxt;
-    }
+			reader.onload = function(e) {
+				var url = e.target.result;
+				$(previewImg).attr("src", url);
+				previewImg.parent().css("background", "transparent");
+				previewImg.show();
+				previewImg.siblings("p").hide();
+			};
+			reader.readAsDataURL(this.files[0]);
+		});
 });
+
 
 
 /*
 |--------------------------------------------------------------------------
-| Post Tag
+| Post Create Tag
 |--------------------------------------------------------------------------
 */
 (function () {

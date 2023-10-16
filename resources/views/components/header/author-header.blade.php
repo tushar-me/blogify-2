@@ -29,7 +29,7 @@
                     </a>
                     <ul class="profile-popup">
                         <li>
-                            <a href="{{route('user.profile')}}">Profile</a>
+                            <a href="{{route('user.profile')}}">{{auth()->user()->name}}</a>
                         </li>
                         <li>
                             <a href="#">Logout</a>

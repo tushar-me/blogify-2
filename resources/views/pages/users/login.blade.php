@@ -20,10 +20,12 @@
                 <div class="col-12 col-lg-6">
                     <div class="login_form">
                         <h6>Sign in</h6>
-                        <input type="text" placeholder="Enter email">
-                        <input type="text" placeholder="Password">
-                        <a href="">Forgor password ?</a>
-                        <button>Login</button>
+                        <form action="/login/user" method="post">
+                            @csrf
+                            <input type="email" id="email" name="email" placeholder="Enter email">
+                            <input type="password" id="password" name="password" placeholder="Password">
+                            <button type="submit">Login</button>
+                        </form>
                     </div>
                 </div>
             </div>

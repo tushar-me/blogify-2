@@ -25,9 +25,15 @@ Route::get('/', [HomeController::class, 'homePage'])->name('home.page');
 | User Page Route
 |--------------------------------------------------------------------------
 */
-Route::get('/login', [UserController::class, 'userLogin'])->name('user.login');
-Route::get('/registration', [UserController::class, 'userRegister'])->name('user.register');
-Route::get('/profile', [UserController::class, 'userProfile'])->name('user.profile');
+// Route::get('/login', [UserController::class, 'userLogin'])->name('user.login');
+// Route::get('/registration', [UserController::class, 'userRegister'])->name('user.register');
+// Route::get('/profile', [UserController::class, 'userProfile'])->name('user.profile');
+
+Route::get('/login', [UserController::class, 'userLogin'])->name('user.login')->middleware('guest');
+Route::post('/login/user', [UserController::class, 'user_auth_login']);
+Route::get('/registration', [UserController::class, 'userRegister'])->name('user.register')->middleware('guest');
+Route::post('/registration/user', [UserController::class, 'create_user']);
+Route::get('/profile', [UserController::class, 'userProfile'])->name('user.profile')->middleware('auth');
 
 
 /*
@@ -42,7 +48,17 @@ Route::get('/posts/{id}',[PostController::class, 'singlePost'])->name('single.po
 
 
 Route::post('/store', [PostController::class, 'store'])->name('store.post');
+Route::post('/update/{id}', [PostController::class, 'update'])->name('update.post');
 
+Route::get('/delete/{id}', [PostController::class, 'destroy'])->name('delete.post');
+
+
+/*
+|--------------------------------------------------------------------------
+| Comment
+|--------------------------------------------------------------------------
+*/
+Route::post('/comment', [PostController::class, 'commentStore'])->name('comment.store');
 
 /*
 |--------------------------------------------------------------------------
