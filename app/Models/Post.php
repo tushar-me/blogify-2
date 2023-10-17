@@ -14,4 +14,9 @@ class Post extends Model
         'post_thumbnail',
         'post_tags'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

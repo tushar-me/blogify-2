@@ -60,6 +60,14 @@ Route::get('/delete/{id}', [PostController::class, 'destroy'])->name('delete.pos
 */
 Route::post('/comment', [PostController::class, 'commentStore'])->name('comment.store');
 
+
+/*
+|--------------------------------------------------------------------------
+| Like
+|--------------------------------------------------------------------------
+*/
+Route::post('/like',[PostController::class, 'like'])->middleware('auth');
+
 /*
 |--------------------------------------------------------------------------
 | About & Contact Page Route

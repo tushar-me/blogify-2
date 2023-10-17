@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
+use Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -83,6 +85,34 @@ class PostController extends Controller
         $post = Post::where('id',$id)->first();
         $post->delete();
         return redirect()->route('user.profile');
+    }
+
+
+
+    public function like(Request $request)
+    {
+        $postId = $request->input('post_id');
+        $isLiked = $request->input('is_liked');
+        $userId = Auth::user()->id;
+
+        $like = Like::where('post_id', $postId)
+                    ->where('user_id', $userId)
+                    ->first();
+
+        if ($isLiked) {
+            if (!$like) {
+                Like::create([
+                    'user_id' => $userId,
+                    'post_id' => $postId,
+                ]);
+            }
+        } else {
+            if ($like) {
+                $like->delete();
+            }
+        }
+
+        return response()->json(['message' => 'Like status updated successfully']);
     }
 
     // Comment Store
