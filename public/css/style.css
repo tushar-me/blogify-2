@@ -1164,10 +1164,236 @@ transform: scale(1.1);
     align-items: center;
     gap: 10px;
 }
+/* Dashboard */
+.dashboard {
+    width: 100%; 
+    height: auto;
+    background-color: #F1F5F9;
+    position: relative;
+    overflow-x: hidden;
+}
+.side_bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--primary);
+    width: 274px;
+}
+.side_bar_logo {
+    padding: 30px 0 40px 30px;
+}
+.side_bar_logo img {
+    width: 150px;
+    height: auto;
+}
+.side_bar_link {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    gap: 12px;
+    transition: all 0.3s ease-in-out;
+}
+.side_bar_link i {
+    color: #fff;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+.side_bar_link p {
+    color: #fff;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+.side_bar_link:hover i{
+    color: #000;
+}
+.side_bar_link:hover p{
+    color: #000;
+}
+.top_bar {
+    overflow: hidden;
+}
+.top_bar_items {
+    background: #fff;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 8px 14px;
+    border-radius: 30px;
+    margin-left: auto;
+    width: fit-content;
+    gap: 20px;
+    box-shadow: 0px 8px 13px -3px rgba(0, 0, 0, 0.07);
+    overflow: hidden
+}
+.top_bar_items-search {
+    display: flex;
+    align-items: center;
+}
+.top_bar_items-search input {
+    border: none;
+    outline: none;
+    background: #F1F5F9;
+    padding: 8px 28px 8px 12px;
+    border-radius: 30px;
+}
+.top_bar_items-search i {
+    color: var(--secondary);
+    margin-left: -25px;
+    font-size: 16px;
+}
+/* .top_bar_items-notification {
+
+} */
+.top_bar_items-notification i{
+    color: var(--secondary);
+    font-size: 20px;
+}
+.top_bar_items-profile img {
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+.breadcrumb h3 {
+    color: #000;
+}
+.breadcrumb h3 span {
+    color: var(--secondary);
+    font-size: 18px;
+    font-weight: 500;
+}
+.widget_item  {
+    background-color: #fff;
+    box-shadow: 0px 8px 13px -3px rgba(0, 0, 0, 0.07);
+    padding:10px 20px;
+}
+.widget_item p{
+    color: #000;
+}
+.widget_item i {
+    font-size: 24px;
+}
+.widget_item h3 {
+    color: #000;
+    font-size: 32px;
+}
+.widget_item h4 {
+    font-size: 22px;
+}
+.widget_item span {
+    font-size: 14px;
+    color: #000;
+    background: rgba(4, 205, 4, 0.326);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+.chart {
+    font-size: 160px;
+    color: #73737910;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 100px;
+}
+
+/* Color */
+.color-popup {
+    background: #fff;
+    box-shadow: 0px 8px 13px -3px rgba(0, 0, 0, 0.07);
+    width:  250px;
+    height: auto;
+    padding: 20px;
+    position: absolute;
+    right: -250px;
+    top: 100px;
+    transition: all 0.4s ease-in-out;
+}
+.color-popup.active {
+    right: 0;
+    transition: all 0.4s ease-in-out;
+}
+.color-popup-toggle {
+    background: var(--primary);
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: -50px;
+    top: 0;
+}
+.color-popup-toggle i {
+    font-size: 24px;
+    color: #fff;
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+.color-popup-items p {
+    color: #000;
+    margin-bottom: 30px;
+}
+.colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.colors svg{
+    width: 30px;
+    height: 30px;
+}
+
+.color {
+    width: 50px;
+    height :50px;
+    cursor: pointer;
+} 
+.purple {
+    background-color: #890ef2;
+}
+.green {
+	background-color: #00939d;
+}
+.pink {
+	background-color: #ff80ed;
+}
+.red {
+    background-color: #bc131f;
+}
+.blue {
+	background-color: #00529c;
+}
+.yellow {
+    background-color: #f5ab0c;
+}
+/* Chart */
+.chart {
+    width: 100%;
+    height: 600px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+.chart canvas {
+    width: 100% !important;
+}
 
 
-
-
+.right {
+    margin-left: 274px;
+    padding: 30px 20px 0 30px;
+}
 
 
 /* Footer */

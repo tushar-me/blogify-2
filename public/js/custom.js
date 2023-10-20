@@ -30,6 +30,11 @@ $(document).ready(function(){
         $(".profile-popup").toggleClass("active");
     });
 
+    //Color Popup
+    $(".color-popup-toggle").click(function(){
+        $(".color-popup").toggleClass("active");
+    });
+
     //Comment Popup
     $(".comment_popup_menu").click(function(){
         var $parentContainer = $(this).closest('.comment_text');
@@ -113,3 +118,33 @@ $(".image-box").click(function(event) {
         tagList_render();
     });
 })();
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Color Customize
+|--------------------------------------------------------------------------
+*/
+
+$(function() {
+	//bg color selector
+    $(".color").click(function(){
+            var color = $(this).attr("data-value");
+        $(".side_bar").css("background-color", color);
+        });
+    
+    //add color picker if supported
+    if (Modernizr.inputtypes.color) {
+        $(".picker").css("display", 'inline-block');
+        var c = document.getElementById('colorpicker');
+        c.addEventListener('change', function(e) {
+        //d.innerHTML = c.value;
+        var color = c.value;
+        $(".side_bar").css("background-color", color);
+            }, false);
+    }
+    });
+    function pickColor() {
+    $("#colorpicker").click();
+    }

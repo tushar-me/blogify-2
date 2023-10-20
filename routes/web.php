@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -75,3 +76,10 @@ Route::post('/like',[PostController::class, 'like'])->middleware('auth');
 */
 Route::get('/about', [HomeController::class, 'aboutPage'])->name('about.page');
 Route::get('/contact', [HomeController::class, 'contactPage'])->name('contact.page');
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard
+|--------------------------------------------------------------------------
+*/
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.home');
