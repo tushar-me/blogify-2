@@ -4,16 +4,30 @@
     </div>
     <ul class="side_bar_links">
         <li>
-            <a href="#" class="side_bar_link">
+            <a href="{{route('dashboard.home')}}" class="side_bar_link">
                 <i class="fa-solid fa-table-cells"></i>
                 <p class="side_bar_link_text">Dashboard</p>
             </a>
         </li>
         <li>
-            <a href="#" class="side_bar_link">
+            <a role="button" class="side_bar_link dropdown">
                 <i class="fa-solid fa-layer-group"></i>
                 <p class="side_bar_link_text">All Post</p>
             </a>
+            <ul class="ps-5 dropdown-items">
+                <li>
+                    <a href="{{route('dashboard.pending.post')}}" class="side_bar_link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <p class="side_bar_link_text">Pending</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('dashboard.published.post')}}" class="side_bar_link">
+                        <i class="fa-solid fa-arrow-up-right-dots"></i>
+                        <p class="side_bar_link_text">Published</p>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href="#" class="side_bar_link">

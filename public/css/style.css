@@ -1167,8 +1167,7 @@ transform: scale(1.1);
 /* Dashboard */
 .dashboard {
     width: 100%; 
-    height: auto;
-    background-color: #F1F5F9;
+    min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
@@ -1210,6 +1209,10 @@ transform: scale(1.1);
 .side_bar_link:hover p{
     color: #000;
 }
+.dropdown-items {
+    display: none;
+}
+/* Top Bar */
 .top_bar {
     overflow: hidden;
 }
@@ -1286,7 +1289,7 @@ transform: scale(1.1);
 .widget_item span {
     font-size: 14px;
     color: #000;
-    background: rgba(4, 205, 4, 0.326);
+    background: rgba(66, 252, 66, 0.326);
     padding: 2px 8px;
     border-radius: 12px;
 }

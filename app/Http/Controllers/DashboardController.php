@@ -10,4 +10,13 @@ class DashboardController extends Controller
     {
         return view("dashboard.home");
     }
+
+    public function pendingPost()
+    {
+        return view("dashboard.post.pending");
+    }
+    public function publishedPost()
+    {
+        return view("dashboard.post.published");
+    }
 }

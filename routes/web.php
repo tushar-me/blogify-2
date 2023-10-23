@@ -83,3 +83,11 @@ Route::get('/contact', [HomeController::class, 'contactPage'])->name('contact.pa
 |--------------------------------------------------------------------------
 */
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.home');
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard Post Route
+|--------------------------------------------------------------------------
+*/
+Route::get('/dashboard/pending-post', [DashboardController::class, 'pendingPost'])->name('dashboard.pending.post');
+Route::get('/dashboard/published-post', [DashboardController::class, 'publishedPost'])->name('dashboard.published.post');

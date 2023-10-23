@@ -33,7 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body data-scroll-animation="true">
+<body data-scroll-animation="true" style="background-color: #F1F5F9;">
 
     <section class="dashboard">
         <aside>

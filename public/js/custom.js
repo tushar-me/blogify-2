@@ -25,22 +25,27 @@ $(document).ready(function(){
         $(".mobile-menu").removeClass("mobile-menu-active");
     });
 
-    //Profile Popup
+    // Profile Popup
     $(".nav_btns").click(function(){
         $(".profile-popup").toggleClass("active");
     });
 
-    //Color Popup
+    // Color Popup
     $(".color-popup-toggle").click(function(){
         $(".color-popup").toggleClass("active");
     });
 
-    //Comment Popup
+    // Comment Popup
     $(".comment_popup_menu").click(function(){
         var $parentContainer = $(this).closest('.comment_text');
         
         $parentContainer.find(".comment_popup").toggleClass("d-none");
     }); 
+
+    // Dropdown Toggle
+    $(".dropdown").click(function(){
+        $(".dropdown-items").slideToggle();
+    });
     
 });
 
