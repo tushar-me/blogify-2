@@ -30,7 +30,7 @@
             </ul>
         </li>
         <li>
-            <a href="#" class="side_bar_link">
+            <a href="{{route('dashboard.add.post')}}" class="side_bar_link">
                 <i class="fa-solid fa-pencil"></i>
                 <p class="side_bar_link_text">Write a Post</p>
             </a>

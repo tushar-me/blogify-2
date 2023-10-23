@@ -619,6 +619,10 @@ header {
     right:  0;
     bottom: -60px;
 }
+.post-action--admin {
+    bottom: -30px !important;
+    border: none !important;
+}
 @media all and (max-width: 900px) {
     .author-post .card-body .post-action {
         gap: 10px;
@@ -1308,10 +1312,11 @@ transform: scale(1.1);
     width:  250px;
     height: auto;
     padding: 20px;
-    position: absolute;
+    position: fixed;
     right: -250px;
     top: 100px;
     transition: all 0.4s ease-in-out;
+    z-index: 1;
 }
 .color-popup.active {
     right: 0;

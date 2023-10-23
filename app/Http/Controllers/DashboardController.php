@@ -19,4 +19,9 @@ class DashboardController extends Controller
     {
         return view("dashboard.post.published");
     }
+
+    // public function addPost()
+    // {
+    //     return view("dashboard.post.addpost");
+    // }
 }
