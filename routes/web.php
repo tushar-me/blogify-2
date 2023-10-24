@@ -92,3 +92,4 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/dashboard/pending-post', [DashboardController::class, 'pendingPost'])->name('dashboard.pending.post');
 Route::get('/dashboard/published-post', [DashboardController::class, 'publishedPost'])->name('dashboard.published.post');
 Route::get('/dashboard/add-post', [DashboardController::class, 'addPost'])->name('dashboard.add.post');
+Route::get('/dashboard/single-post', [DashboardController::class, 'singlePost'])->name('dashboard.single.post');

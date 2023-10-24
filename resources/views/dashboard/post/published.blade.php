@@ -29,7 +29,7 @@
                 <ul class="post-action post-action--admin">
                     <li>
                         <a href="posts/">
-                            View Post<i class="fa-regular fa-eye"></i>
+                            View<i class="fa-regular fa-eye"></i>
                         </a>
                     </li>
                 </ul>

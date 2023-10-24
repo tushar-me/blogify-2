@@ -28,13 +28,18 @@
                     </div>
                     <ul class="post-action post-action--admin">
                         <li>
-                            <a href="posts/">
-                                View Post<i class="fa-regular fa-eye"></i>
+                            <a href="{{ route('dashboard.single.post') }}">
+                                View<i class="fa-regular fa-eye"></i>
                             </a>
                         </li>
                         <li>
                             <a href="posts/">
-                                Reject Post<i class="fa-solid fa-ban"></i>
+                                Aprove<i class="fa-regular fa-circle-check"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="posts/">
+                                Reject<i class="fa-solid fa-ban"></i>
                             </a>
                         </li>
                     </ul>
@@ -63,13 +68,18 @@
                     </div>
                     <ul class="post-action post-action--admin">
                         <li>
-                            <a href="posts/">
-                                View Post<i class="fa-regular fa-eye"></i>
+                            <a href="{{ route('dashboard.single.post') }}">
+                                View<i class="fa-regular fa-eye"></i>
                             </a>
                         </li>
                         <li>
                             <a href="posts/">
-                                Reject Post<i class="fa-solid fa-ban"></i>
+                                Aprove<i class="fa-regular fa-circle-check"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="posts/">
+                                Reject<i class="fa-solid fa-ban"></i>
                             </a>
                         </li>
                     </ul>
@@ -98,13 +108,18 @@
                     </div>
                     <ul class="post-action post-action--admin">
                         <li>
-                            <a href="posts/">
-                                View Post<i class="fa-regular fa-eye"></i>
+                            <a href="{{ route('dashboard.single.post') }}">
+                                View<i class="fa-regular fa-eye"></i>
                             </a>
                         </li>
                         <li>
                             <a href="posts/">
-                                Reject Post<i class="fa-solid fa-ban"></i>
+                                Aprove<i class="fa-regular fa-circle-check"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="posts/">
+                                Reject<i class="fa-solid fa-ban"></i>
                             </a>
                         </li>
                     </ul>
