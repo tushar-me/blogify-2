@@ -836,6 +836,9 @@ ul.tagList li {
 	word-break: break-all;
     color: #fff;
 }
+.tagList--admin li {
+    background: rgba(75, 107, 251, 0.8) !important;
+}
 ul.tagList li > span.rmTag {
     position: absolute;
     margin: 0.25rem;
@@ -942,9 +945,9 @@ label input:checked ~ .checkmark {
     animation: like_401 400ms ease;
 }
 
-label:hover {
+/* label:hover {
 transform: scale(1.1);
-}
+} */
 
 @keyframes like_401 {
     0% {
@@ -1404,6 +1407,31 @@ transform: scale(1.1);
 }
 
 
+/* Admin Table */
+.admin-table {
+    width: 100%;
+}
+.admin-table th {
+    border-bottom: 1px solid var(--secondary);
+    padding: 15px 0;
+}
+.admin-table td {
+    padding: 15px 0;
+}
+.admin-table a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-table i {
+    font-size: 18px;
+}
+.admin-table .edit {
+    color: #06cf06;
+}
+.admin-table .delete {
+    color: #f52f2f;
+}
 /* Footer */
 .footer {
     padding-top: 60px;

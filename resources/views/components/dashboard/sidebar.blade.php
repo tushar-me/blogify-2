@@ -30,7 +30,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{route('dashboard.add.post')}}" class="side_bar_link">
+            <a href="{{route('dashboard.create.post')}}" class="side_bar_link">
                 <i class="fa-solid fa-pencil"></i>
                 <p class="side_bar_link_text">Write a Post</p>
             </a>
@@ -42,9 +42,15 @@
             </a>
         </li>
         <li>
-            <a href="#" class="side_bar_link">
+            <a href="{{ route('dashboard.admin.profile') }}" class="side_bar_link">
                 <i class="fa-regular fa-user"></i>
                 <p class="side_bar_link_text">Profile</p>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('dashboard.manage.admin') }}" class="side_bar_link">
+                <i class="fa-solid fa-user-plus"></i>
+                <p class="side_bar_link_text">Manage Admins</p>
             </a>
         </li>
         <li>

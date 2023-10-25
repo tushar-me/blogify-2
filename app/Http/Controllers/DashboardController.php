@@ -11,6 +11,12 @@ class DashboardController extends Controller
         return view("dashboard.home");
     }
 
+
+    public function create()
+    {
+        return view("dashboard.post.create");
+    }
+
     public function pendingPost()
     {
         return view("dashboard.post.pending");
@@ -23,9 +29,14 @@ class DashboardController extends Controller
     {
         return view("dashboard.post.single-post");
     }
-
-    // public function addPost()
-    // {
-    //     return view("dashboard.post.addpost");
-    // }
+    public function adminProfile()
+    {
+        return view("dashboard.profile");
+    }
+    public function manageAdmins()
+    {
+        return view("dashboard.manage-admin");
+    }
+    
+    
 }
