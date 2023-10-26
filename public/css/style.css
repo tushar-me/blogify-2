@@ -130,16 +130,27 @@ button {
     border-radius: 6px;
 }
 .login_form button, .registration_form button {
+    width: 100%;
     padding: 10px 0;
     color: #fff;
     background-color: var(--primary);
     border-radius: 6px;
     margin-top: 30px;
+    font-size: 15px;
 }
 @media all and (max-width: 980px) {
     .login_form button, .registration_form button {
         margin-top: 20px;
     }
+}
+
+.login_form-admin, .registration_form-admin {
+    text-align: center;
+    border: 1px solid var(--primary);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: auto;
 }
 
 

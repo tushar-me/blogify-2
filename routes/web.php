@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
@@ -35,6 +36,15 @@ Route::post('/login/user', [UserController::class, 'user_auth_login']);
 Route::get('/registration', [UserController::class, 'userRegister'])->name('user.register')->middleware('guest');
 Route::post('/registration/user', [UserController::class, 'create_user']);
 Route::get('/profile', [UserController::class, 'userProfile'])->name('user.profile')->middleware('auth');
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Login Register
+|--------------------------------------------------------------------------
+*/
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
+Route::get('/admin/register', [AdminController::class, 'adminRegister'])->name('admin.register');
 
 
 /*
