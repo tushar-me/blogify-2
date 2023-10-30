@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -19,11 +20,13 @@ class DashboardController extends Controller
 
     public function pendingPost()
     {
-        return view("dashboard.post.pending");
+        $pendingPosts =  Post::where('status', 0)->get();
+        return view("dashboard.post.pending", compact("pendingPosts"));
     }
     public function publishedPost()
     {
-        return view("dashboard.post.published");
+        $publishedPosts =  Post::where('status', 1)->get();
+        return view("dashboard.post.published", compact("publishedPosts"));
     }
     public function singlePost()
     {
@@ -37,6 +40,12 @@ class DashboardController extends Controller
     {
         return view("dashboard.manage-admin");
     }
-    
-    
+
+    public function approvePost(Request $request, $id)
+    {
+        $post = Post::where('id', $id)->first();
+        $post->status = 1;
+        $post->save();
+        return redirect()->back()->with('success','Post Approved');
+    }
 }

@@ -52,7 +52,9 @@ class UserController extends Controller
 
     public function userProfile()
     {
-        $posts =  Post::get();
-        return view('pages.users.profile',['posts' => $posts]);
+        $pendingPosts = Post::where('status', 0)->get();
+        $publishedPosts = Post::where('status', 1)->get();
+
+        return view('pages.users.profile', compact('pendingPosts', 'publishedPosts'));
     }
 }

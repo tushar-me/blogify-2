@@ -102,6 +102,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboard.create.post');
 Route::get('/dashboard/pending-post', [DashboardController::class, 'pendingPost'])->name('dashboard.pending.post');
 Route::get('/dashboard/published-post', [DashboardController::class, 'publishedPost'])->name('dashboard.published.post');
+Route::get('/dashboard/post-approve/{id}', [DashboardController::class, 'approvePost'])->name('dashboard.approve.post');
 Route::get('/dashboard/single-post', [DashboardController::class, 'singlePost'])->name('dashboard.single.post');
 Route::get('/dashboard/profile', [DashboardController::class, 'adminProfile'])->name('dashboard.admin.profile');
 Route::get('/dashboard/admins', [DashboardController::class, 'manageAdmins'])->name('dashboard.manage.admin');

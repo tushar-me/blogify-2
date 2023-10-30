@@ -35,18 +35,23 @@
         <div class="container">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-all-post-tab" data-bs-toggle="tab" data-bs-target="#nav-all-post" type="button" role="tab" aria-controls="nav-all-post" aria-selected="true">All Post (0)</button>
-                    <button class="nav-link" id="nav-published-tab" data-bs-toggle="tab" data-bs-target="#nav-published" type="button" role="tab" aria-controls="nav-published" aria-selected="false">Published (0)</button>
-                    <button class="nav-link" id="nav-pending-tab" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="false">Pending (0)</button>
+                    {{-- <button class="nav-link active" id="nav-all-post-tab" data-bs-toggle="tab" data-bs-target="#nav-all-post" type="button" role="tab" aria-controls="nav-all-post" aria-selected="true">All Post (0)</button> --}}
+                    <button class="nav-link active" id="nav-published-tab" data-bs-toggle="tab" data-bs-target="#nav-published" type="button" role="tab" aria-controls="nav-published" aria-selected="false">Published ( {{ $publishedPosts->count() }} )</button>
+                    <button class="nav-link" id="nav-pending-tab" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="false">Pending ( {{ $pendingPosts->count() }} )</button>
                     <a href="{{route('create.post')}}" class="nav-link add-post-btn">Add Post <i class="fa-solid fa-circle-plus"></i></a>
                 </div>
     
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-all-post" role="tabpanel" aria-labelledby="nav-all-post-tab" tabindex="0">
+                <div class="tab-pane fade" id="nav-all-post" role="tabpanel" aria-labelledby="nav-all-post-tab" tabindex="0">
 
                     {{-- Author All Post --}}
-                    @foreach ($posts as $post)
+
+                </div>
+                <div class="tab-pane fade  show active" id="nav-published" role="tabpanel" aria-labelledby="nav-published-tab" tabindex="0">
+
+                    {{-- Author Published Post --}}
+                    @foreach ($publishedPosts as $post)
                     <div class="card mb-3 author-post">
                         <div class="row g-0">
                             <div class="col-12 col-md-4">
@@ -61,7 +66,7 @@
                                             <img src="{{asset('img/post/author/author-2.jpg')}}" alt="Author">
                                         </div>
                                         <div class="info">
-                                            <p>{{ auth()->user()->name}}</p>
+                                            <p>Jason Francisco</p>
                                         </div>
                                     </a>
                                     <p>{{ $post->created_at->format('F j, Y  g:i a') }}</p>
@@ -90,15 +95,10 @@
                     @endforeach
 
                 </div>
-                <div class="tab-pane fade" id="nav-published" role="tabpanel" aria-labelledby="nav-published-tab" tabindex="0">
-
-                    {{-- Author Published Post --}}
-
-                </div>
                 <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab" tabindex="0">
 
                     {{-- Author Pending Post --}}
-                    @foreach ($posts as $post)
+                    @foreach ($pendingPosts as $post)
                     <div class="card mb-3 author-post">
                         <div class="row g-0">
                             <div class="col-12 col-md-4">

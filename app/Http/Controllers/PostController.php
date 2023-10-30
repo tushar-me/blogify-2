@@ -22,7 +22,8 @@ class PostController extends Controller
     }
     public function allPost ()
     {
-        return view('pages.post.all-post');
+        $posts = Post::where('status', 1)->orderBy("created_at","desc")->get();
+        return view('pages.post.all-post', compact('posts'));
     }
     public function singlePost ($id)
     {
