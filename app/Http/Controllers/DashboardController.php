@@ -2,14 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
     public function index()
-    {
-        return view("dashboard.home");
+    {   
+        $currentMonth = Carbon::now();
+        $postCount = Post::whereMonth('created_at', $currentMonth->month)
+                    ->whereYear('created_at', $currentMonth->year)
+                    ->count();
+
+        $likeCount = Like::whereMonth('created_at', $currentMonth->month)
+                    ->whereYear('created_at', $currentMonth->year)
+                    ->count();
+
+        $mostLikedPost = Post::withCount('likes')
+                    ->whereMonth('created_at', $currentMonth->month)
+                    ->whereYear('created_at', $currentMonth->year)
+                    ->orderBy('likes_count', 'desc')
+                    ->first();
+
+        return view("dashboard.home", compact("postCount","likeCount", "mostLikedPost"));
     }
 
 

@@ -15,7 +15,7 @@
                     <img src="{{asset('img/post/author/cover-photo.png')}}" alt="Cover Photo">
                 </div>
                 <div class="profile_pic">
-                    <img src="{{asset('img/post/author/author-1.jpg')}}" alt="Profile Picture">
+                    <img src="{{asset('img/post/author/author.png')}}" alt="Profile Picture">
                 </div>
                 <div class="profile_info">
                     <h3>{{ auth()->user()->name}}</h3>

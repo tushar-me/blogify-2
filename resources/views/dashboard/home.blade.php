@@ -11,7 +11,7 @@
                         <p>Total Post</p>
                         <div class="d-flex align-items-center gap-3 my-3">
                             <i class="fa-solid fa-pen"></i>
-                            <h3>214</h3>
+                            <h3>{{ $postCount }}</h3>
                         </div>
                         <div class="text-end">
                             <span>This month</span>
@@ -20,10 +20,10 @@
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="widget_item">
-                        <p>Total Views</p>
+                        <p>Total Post Likes</p>
                         <div class="d-flex align-items-center gap-3 my-3">
-                            <i class="fa-solid fa-eye"></i>
-                            <h3>130K</h3>
+                            <i class="fa-regular fa-heart"></i>
+                            <h3>{{ $likeCount }}</h3>
                         </div>
                         <div class="text-end">
                             <span>This month</span>
@@ -32,8 +32,12 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="widget_item">
-                        <p>Most Viewed Article</p>
-                        <h4>The Most Awesome Article Man Has Ever Written</h4>
+                        <p>Most Liked Article</p>
+                        @if ($mostLikedPost)
+                            <h4>{{ $mostLikedPost->post_title }}</h4>
+                        @else
+                            <h4>No most liked post found</h4>
+                        @endif
                         <div class="text-end">
                             <span>This month</span>
                         </div>

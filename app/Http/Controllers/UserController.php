@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -52,8 +53,10 @@ class UserController extends Controller
 
     public function userProfile()
     {
-        $pendingPosts = Post::where('status', 0)->get();
-        $publishedPosts = Post::where('status', 1)->get();
+        $user = Auth::user();
+
+        $pendingPosts = $user->posts()->where('status', 0)->get();
+        $publishedPosts = $user->posts()->where('status', 1)->get();
 
         return view('pages.users.profile', compact('pendingPosts', 'publishedPosts'));
     }

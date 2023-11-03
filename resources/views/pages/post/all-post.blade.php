@@ -14,23 +14,23 @@
                 @foreach ( $posts as $post)
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="post wow fadeInUpBig" data-wow-duration="1.2s">
-                            <a  href="#" class="d-inline-block w-100">
+                            <a  href="/posts/{{ $post->id }}" class="d-inline-block w-100">
                                 <div class="post_thumbnail">
                                     <img src="{{ asset('uploads/'. $post->post_thumbnail) }}" alt="Thumbnail">
                                 </div>
                             </a>
                             <div class="post_content">
                                 <a class="tag d-inline-block" href="#">Technology</a>
-                                <a href="#">
+                                <a href="/posts/{{ $post->id }}">
                                     <h3>{{ $post->post_title }}</h3>
                                 </a>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <a href="{{route('user.profile')}}" class="d-flex align-items-center gap-2">
                                         <div class="author-img ">
-                                            <img src="{{asset('img/post/author/author-1.jpg')}}" alt="Author">
+                                            <img src="{{asset('img/post/author/author.png')}}" alt="Author">
                                         </div>
                                         <div class="info">
-                                            <p>Jason Francisco</p>
+                                            <p>{{ $post->user->name }}</p>
                                         </div>
                                     </a>
                                     <p>{{ $post->created_at->format('F j, Y') }}</p>

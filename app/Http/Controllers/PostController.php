@@ -27,9 +27,8 @@ class PostController extends Controller
     }
     public function singlePost ($id)
     {
-        $comments = Comment::get();
-        $post = Post::where('id', $id)->first();
-        return view('pages.post.single-post', ['post' => $post, 'comments' => $comments]);
+        $post = Post::where('id', $id)->with('user', 'comments')->first();
+        return view('pages.post.single-post', ['post' => $post]);
     }
 
 
@@ -47,6 +46,7 @@ class PostController extends Controller
         $request->file('post_thumbnail')->move(public_path('uploads'), $imageName);
 
         $post = new Post;
+        $post->user_id = Auth::id(); 
         $post->post_thumbnail = $imageName;
         $post->post_title = $request->post_title;
         $post->post_desc  = $request->post_desc;
@@ -90,38 +90,36 @@ class PostController extends Controller
 
 
 
-    public function like(Request $request)
+    public function like($id)
     {
-        $postId = $request->input('post_id');
-        $isLiked = $request->input('is_liked');
-        $userId = Auth::user()->id;
+        $data = [
+            'post_id' => $id,
+            'user_id' => auth()->user()->id,
+        ];
+        Like::create($data);
 
-        $like = Like::where('post_id', $postId)
-                    ->where('user_id', $userId)
-                    ->first();
-
-        if ($isLiked) {
-            if (!$like) {
-                Like::create([
-                    'user_id' => $userId,
-                    'post_id' => $postId,
-                ]);
-            }
-        } else {
-            if ($like) {
-                $like->delete();
-            }
-        }
-
-        return response()->json(['message' => 'Like status updated successfully']);
+        return redirect()->back();
     }
+
+    public function unLike($id)
+    {
+        Like::where('post_id', $id)
+            ->where('user_id', auth()->user()->id)
+            ->delete();
+
+        return redirect()->back();   
+    }
+
+
 
     // Comment Store
     public function commentStore (Request $request)
     {
         $comment = new Comment;
 
-        $comment->comment_text = $request->comment_text;
+        $comment->comment = $request->comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->post_id = $request->post_id;
         $comment->save();
     }
 }

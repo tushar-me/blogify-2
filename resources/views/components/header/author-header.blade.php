@@ -25,7 +25,7 @@
                 </div>
                 <div class="nav_btns gap-2 d-none d-lg-flex">
                     <a href="#">
-                        <img src="{{asset('img/post/author/author-1.jpg')}}" alt="Image">
+                        <img src="{{asset('img/post/author/author.png')}}" alt="Image">
                     </a>
                     <ul class="profile-popup">
                         <li>

@@ -32,7 +32,7 @@
                     </div>
                     <ul class="post-action post-action--admin">
                         <li>
-                            <a href="posts/">
+                            <a href="/posts/{{ $post->id }}">
                                 View<i class="fa-regular fa-eye"></i>
                             </a>
                         </li>

@@ -53,7 +53,7 @@
     <div class="container pb-5">
         <ul class="d-flex  gap-3">
             <li>
-                <a href="posts/" class="d-flex align-items-center gap-2 bg-success text-white px-3 py-2">
+                <a href="/dashboard/post-approve/{{ $post->id }}" class="d-flex align-items-center gap-2 bg-success text-white px-3 py-2">
                     Aprove<i class="fa-regular fa-circle-check"></i>
                 </a>
             </li>

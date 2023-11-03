@@ -916,77 +916,9 @@ ul.tagList li > span.rmTag:hover {
 .single_post_react li a:hover {
     color: var(--primary);
 }
-.single_post_react label {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    font-size: 25px;
-    user-select: none;
-    transition: 100ms;
-    margin: 0;
-}
-.single_post_react input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-.checkmark {
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    transition: 100ms;
-    animation: dislike_401 400ms ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-/* .checkmark svg {
-    width: 20px;
-    height: auto;
+/* .single_post_react i {
+    color: var(--primary);
 } */
-label input:checked ~ .checkmark path {
-    fill: var(--primary);
-    stroke-width: 1.2;
-    stroke: var(--primary);
-}
-label input:checked ~ .checkmark {
-    animation: like_401 400ms ease;
-}
-
-/* label:hover {
-transform: scale(1.1);
-} */
-
-@keyframes like_401 {
-    0% {
-        transform: scale(0);
-    }
-
-    50% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-    }
-
-    @keyframes dislike_401 {
-    0% {
-        transform: scale(0);
-    }
-
-    50% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
 
 
 .single_post_desc {
@@ -1036,7 +968,7 @@ transform: scale(1.1);
 }
 .comment_popup_menu {
     position: absolute;
-    top: -10px;
+    top: 0px;
     right: 0;
     padding: 5px 8px;
 }

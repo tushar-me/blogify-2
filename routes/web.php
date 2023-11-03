@@ -77,7 +77,8 @@ Route::post('/comment', [PostController::class, 'commentStore'])->name('comment.
 | Like
 |--------------------------------------------------------------------------
 */
-Route::post('/like',[PostController::class, 'like'])->middleware('auth');
+Route::get('posts/{id}/like',[PostController::class, 'like'])->name('post.like');
+Route::get('posts/{id}/unlike',[PostController::class, 'unLike'])->name('post.unlike');
 
 /*
 |--------------------------------------------------------------------------
