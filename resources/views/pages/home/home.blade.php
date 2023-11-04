@@ -34,7 +34,11 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <a href="{{route('user.profile')}}" class="d-flex align-items-center gap-2">
                                         <div class="author-img ">
-                                            <img src="{{asset('img/post/author/author.png')}}" alt="Author">
+                                            @if ($post->user->profile && $post->user->profile->photo)
+                                                <img src="{{ asset('uploads/' . $post->user->profile->photo) }}" alt="Author Profile Photo">
+                                            @else
+                                                <img src="{{ asset('img/post/author/author.png') }}" alt="Author">
+                                            @endif
                                         </div>
                                         <div class="info">
                                             <p>{{ $post->user->name }}</p>

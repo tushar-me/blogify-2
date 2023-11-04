@@ -36,7 +36,8 @@ Route::post('/login/user', [UserController::class, 'user_auth_login']);
 Route::get('/registration', [UserController::class, 'userRegister'])->name('user.register')->middleware('guest');
 Route::post('/registration/user', [UserController::class, 'create_user']);
 Route::get('/profile', [UserController::class, 'userProfile'])->name('user.profile')->middleware('auth');
-
+Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::post('/profile', [UserController::class,'profileUpdate'])->name('update.profile');
 
 /*
 |--------------------------------------------------------------------------
@@ -77,8 +78,10 @@ Route::post('/comment', [PostController::class, 'commentStore'])->name('comment.
 | Like
 |--------------------------------------------------------------------------
 */
-Route::get('posts/{id}/like',[PostController::class, 'like'])->name('post.like');
-Route::get('posts/{id}/unlike',[PostController::class, 'unLike'])->name('post.unlike');
+
+Route::post('posts/{id}/toggle-like', [PostController::class, 'toggleLike'])->name('post.toggleLike');
+
+
 
 /*
 |--------------------------------------------------------------------------

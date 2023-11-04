@@ -27,6 +27,11 @@ class PostController extends Controller
     }
     public function singlePost ($id)
     {
+        $user = auth()->user();
+
+        if (!$user) {
+            return redirect()->route('user.login');
+        }
         $post = Post::where('id', $id)->with('user', 'comments')->first();
         return view('pages.post.single-post', ['post' => $post]);
     }
@@ -90,27 +95,36 @@ class PostController extends Controller
 
 
 
-    public function like($id)
+    public function toggleLike($id)
     {
-        $data = [
-            'post_id' => $id,
-            'user_id' => auth()->user()->id,
-        ];
-        Like::create($data);
+        $user = auth()->user();
 
-        return redirect()->back();
+        if (!$user) {
+            return redirect()->route('user.login');
+        }
+
+        
+        $existingLike = Like::where('post_id', $id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($existingLike) {
+            
+            $existingLike->delete();
+            $isLiked = false;
+        } else {
+            $data = [
+                'post_id' => $id,
+                'user_id' => $user->id,
+            ];
+            Like::create($data);
+            $isLiked = true;
+        }
+
+        $likeCount = Like::where('post_id', $id)->count();
+
+        return response()->json(['success' => true, 'likeCount' => $likeCount, 'isLiked' => $isLiked]);
     }
-
-    public function unLike($id)
-    {
-        Like::where('post_id', $id)
-            ->where('user_id', auth()->user()->id)
-            ->delete();
-
-        return redirect()->back();   
-    }
-
-
 
     // Comment Store
     public function commentStore (Request $request)

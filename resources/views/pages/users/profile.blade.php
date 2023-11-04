@@ -11,18 +11,35 @@
     <section class="profile">
         <div class="container">
             <div class="profile_header mb-5">
-                <div class="cover_photo">
-                    <img src="{{asset('img/post/author/cover-photo.png')}}" alt="Cover Photo">
-                </div>
-                <div class="profile_pic">
-                    <img src="{{asset('img/post/author/author.png')}}" alt="Profile Picture">
-                </div>
-                <div class="profile_info">
-                    <h3>{{ auth()->user()->name}}</h3>
-                    <p>Web Developer</p>
-                    <h4 class="mt-5 text-white">About Me</h4>
-                    <p class="text-center w-75 mx-auto text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, mollitia nostrum iste debitis eum assumenda, temporibus, quis sapiente beatae ad similique. A asperiores ab iusto quas, rem recusandae atque  nostrum iste debitis eum assumenda, et.</p>
-                </div>
+                <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="cover_photo">
+                        <img src="{{ asset('img/post/author/cover-photo.png') }}" alt="Cover Photo">
+                    </div>
+                    <div class="profile-pic">
+                        <label class="-label" for="file">
+                            <span>Change Image</span>
+                        </label>
+                        <input id="file" type="file" name="photo" onchange="loadFile(event"/>
+                        <img src="{{ $profile && $profile->photo ? asset('uploads/' . $profile->photo) : asset('img/post/author/author.png') }}" id="output" width="200" />
+                    </div>
+                    <div class="profile_info">
+                        <h3>
+                            <input type="text" name="name" value="{{ auth()->user()->name }}">
+                        </h3>
+                        <p class="bio">
+                            <input type="text" name="bio" id="bio" value="{{ $profile ? $profile->bio : 'Add Bio...' }}">
+                        </p>
+                        <h4 class="mt-5 text-white">About Me</h4>
+                        <p class="text-center w-75 mx-auto text-white about">
+                            <textarea name="about" id="about">{{ $profile ? $profile->about : 'Add Description Here...' }}</textarea>
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <button>Save</button>
+                    </div>
+                </form>
+                
             </div>
         </div>
     </section>

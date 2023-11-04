@@ -19,7 +19,11 @@
                 <div class="d-flex align-items-center gap-4">
                     <a href="#" class="d-flex align-items-center gap-3">
                         <div class="author-img">
-                            <img src="{{asset('img/post/author/author.png')}}" alt="Author">
+                            @if ($post->user->profile && $post->user->profile->photo)
+                                <img src="{{ asset('uploads/' . $post->user->profile->photo) }}" alt="Author Profile Photo">
+                            @else
+                                <img src="{{ asset('img/post/author/author.png') }}" alt="Author">
+                            @endif
                         </div>
                         <div class="info">
                             <p> {{ $post->user->name }} </p>
@@ -32,28 +36,24 @@
                 </div>
                 <ul class="single_post_react">
                     @php
-                        $likes = DB::table('likes')
-                                ->where('post_id', $post->id)
-                                ->get();
-
-                        $user = DB::table('likes')
-                                ->where('post_id', $post->id)
-                                ->where('user_id', auth()->user()->id)
-                                ->first();        
+                    $likes = DB::table('likes')
+                            ->where('post_id', $post->id)
+                            ->get();
+                
+                    $user = DB::table('likes')
+                            ->where('post_id', $post->id)
+                            ->where('user_id', auth()->user()->id)
+                            ->first();        
                     @endphp 
                     <li class="d-flex align-items-center gap-2" style="color: var(--secondary);">
-
-                        @if ($user)
-                        <a href=" {{ route('post.unlike', $post->id) }} ">
-                            <i style="color:var(--primary);" class="fa-solid fa-heart"></i>
+                        <a href="javascript:void(0);" onclick="toggleLike({{ $post->id }})">
+                            @if ($user)
+                            <i id="likeIcon" style="color: var(--primary);" class="fa-solid fa-heart"></i>
+                            @else
+                            <i id="likeIcon" class="fa-regular fa-heart"></i>
+                            @endif
                         </a>
-                        @else
-                            <a href=" {{ route('post.like', $post->id) }} ">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        @endif
-                        
-                        {{ $likes->count() }}
+                        <span id="likeCount">{{ $likes->count() }}</span>
                     </li>
                     <li>
                         <a href="#comment"><i class="fa-regular fa-comment"></i>Comment</a>
@@ -76,7 +76,11 @@
                     @foreach ($post->comments as $comment)
                     <div class="post_comment">
                         <div class="comment_author">
-                            <img src="{{asset('img/post/author/author.png')}}" alt="Author">
+                            @if ($comment->user->profile && $comment->user->profile->photo)
+                                <img src="{{ asset('uploads/' . $comment->user->profile->photo) }}" alt="Author Profile Photo">
+                            @else
+                                <img src="{{ asset('img/post/author/author.png') }}" alt="Author">
+                            @endif
                         </div>
                         <div class="comment_text">
                             <h4 class="mb-3 text-white">{{ $comment->user->name }}</h4>
@@ -112,29 +116,33 @@
     </section>
 
     <script>
-        $(document).ready(function () {
             // Like 
-            $('#like-checkbox').on('change', function() {
-                const postId = $(this).data('post-id');
-                const isChecked = $(this).prop('checked');
-                
+            function toggleLike(postId) {
                 $.ajax({
-                    url: '/like', 
-                    method: 'POST',
-                    data: {
-                        post_id: postId,
-                        is_liked: isChecked,
-                    },
-                    success: function(response) {
+                    type: 'POST',
+                    url: '{{ route('post.toggleLike', ['id' => 'postId']) }}'.replace('postId', postId),
+                    data: { postId: postId },
+                    success: function (response) {
+                        if (response.success) {
+                            // Update like count
+                            $('#likeCount').text(response.likeCount);
 
-                        console.log(response);
-                    },
-                    error: function(error) {
-
-                        console.error(error);
+                            // Toggle the heart icon
+                            if (response.isLiked) {
+                                $('#likeIcon').removeClass('fa-regular fa-heart').addClass('fa-solid fa-heart');
+                                $('#likeIcon').css('color', 'var(--primary)');
+                            } else {
+                                $('#likeIcon').removeClass('fa-solid fa-heart').addClass('fa-regular fa-heart');
+                                $('#likeIcon').css('color', ''); // Remove the color style
+                            }
+                        }
                     }
                 });
-            });
+            }
+
+
+        $(document).ready(function () {
+            
 
             // Comment 
             $("#comment_form").submit(function (event) {

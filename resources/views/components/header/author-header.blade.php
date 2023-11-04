@@ -32,7 +32,7 @@
                             <a href="{{route('user.profile')}}">{{auth()->user()->name}}</a>
                         </li>
                         <li>
-                            <a href="#">Logout</a>
+                            <a href="{{ route('user.logout') }} ">Logout</a>
                         </li>
                     </ul>
                 </div>

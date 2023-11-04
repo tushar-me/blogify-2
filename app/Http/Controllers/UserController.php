@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\profile;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -28,6 +29,11 @@ class UserController extends Controller
         }
 
             return redirect('/login');
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return redirect('/login'); 
     }
 
     public function userRegister()
@@ -57,7 +63,37 @@ class UserController extends Controller
 
         $pendingPosts = $user->posts()->where('status', 0)->get();
         $publishedPosts = $user->posts()->where('status', 1)->get();
+        $profile = $user->profile;
 
-        return view('pages.users.profile', compact('pendingPosts', 'publishedPosts'));
+        return view('pages.users.profile', compact('pendingPosts', 'publishedPosts', 'profile'));
+    }
+    public function profileUpdate(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'bio' => 'string|max:255',
+            'about' => 'string|max:1000',
+        ]);
+        
+        $user = auth()->user();
+        $user->name = $request->input('name');
+        $user->save();
+        $userProfile = $user->profile ?? new profile();
+        $userProfile->user_id = $user->id;
+        $userProfile->bio = $request->input('bio');
+        $userProfile->about = $request->input('about');
+
+        if ($request->hasFile('file')) {
+            $imageName = time() . '.' . $request->file('photo')->extension();
+            $request->file('photo')->move(public_path('uploads'), $imageName);
+            $userProfile->photo = $imageName;
+        }
+        
+
+        $userProfile->save();
+
+        return redirect()->back()->with('success', 'Profile updated successfully');
     }
 }
+
+    

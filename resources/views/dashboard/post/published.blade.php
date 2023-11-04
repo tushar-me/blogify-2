@@ -22,13 +22,17 @@
                     <div class="d-flex align-items-center gap-4 mt-3">
                         <a href="#" class="d-flex align-items-center gap-3">
                             <div class="author-img ">
-                                <img src="{{asset('img/post/author/author-2.jpg')}}" alt="Author">
+                                @if ($post->user->profile && $post->user->profile->photo)
+                                    <img src="{{ asset('uploads/' . $post->user->profile->photo) }}" alt="Author Profile Photo">
+                                @else
+                                    <img src="{{ asset('img/post/author/author.png') }}" alt="Author">
+                                @endif
                             </div>
                             <div class="info">
-                                <p>Jason Francisco</p>
+                                <p>{{ $post->user->name }}</p>
                             </div>
                         </a>
-                        <p>August 20, 2022</p>
+                        <p>{{ $post->created_at->format('F j, Y') }}</p>
                     </div>
                     <ul class="post-action post-action--admin">
                         <li>

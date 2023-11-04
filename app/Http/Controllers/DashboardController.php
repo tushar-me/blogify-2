@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Post;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -12,15 +13,18 @@ class DashboardController extends Controller
     public function index()
     {   
         $currentMonth = Carbon::now();
-        $postCount = Post::whereMonth('created_at', $currentMonth->month)
-                    ->whereYear('created_at', $currentMonth->year)
-                    ->count();
+        $postCount = Post::where('status', 1)
+                ->whereMonth('created_at', $currentMonth->month)
+                ->whereYear('created_at', $currentMonth->year)
+                ->count();
+
 
         $likeCount = Like::whereMonth('created_at', $currentMonth->month)
                     ->whereYear('created_at', $currentMonth->year)
                     ->count();
 
         $mostLikedPost = Post::withCount('likes')
+                    ->where('status', 1)
                     ->whereMonth('created_at', $currentMonth->month)
                     ->whereYear('created_at', $currentMonth->year)
                     ->orderBy('likes_count', 'desc')
@@ -51,7 +55,9 @@ class DashboardController extends Controller
     }
     public function adminProfile()
     {
-        return view("dashboard.profile");
+        $user = Auth::user();
+        $profile = $user->profile;
+        return view("dashboard.profile", compact('profile'));
     }
     public function manageAdmins()
     {
